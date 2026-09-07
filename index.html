@@ -338,8 +338,14 @@
   .rec-cat{font-size:11px; font-weight:800; color:var(--teal-dark); background:#E4F5F1; padding:3px 9px; border-radius:8px; display:inline-block; margin-bottom:8px;}
   .rec-title{font-size:15.5px; font-weight:800; color:var(--navy); margin-bottom:4px;}
   .rec-memo{font-size:13.5px; color:var(--ink); margin-bottom:8px; white-space:pre-wrap;}
-  .note-jp{font-size:14.5px; font-weight:700; color:var(--navy); line-height:1.6; margin-bottom:4px;}
-  .note-en{font-size:12px; color:var(--muted); line-height:1.5;}
+  .note-jp{font-size:15px; font-weight:700; color:var(--navy); line-height:1.7;}
+  .note-en{font-size:12.5px; color:var(--muted); line-height:1.6; margin-top:8px; padding-top:8px; border-top:1px dashed var(--line);}
+  .note-card{display:flex; gap:14px; align-items:flex-start;}
+  .note-icon{
+    width:38px; height:38px; border-radius:50%; background:var(--paper);
+    display:flex; align-items:center; justify-content:center; font-size:19px; flex-shrink:0;
+  }
+  .note-body{flex:1; min-width:0;}
   .rec-loc{font-size:12px; color:var(--muted); margin-bottom:6px;}
   .rec-meta{font-size:11.5px; color:var(--muted); display:flex; justify-content:space-between; align-items:center; margin-top:8px; padding-top:8px; border-top:1px solid var(--line);}
   .rec-actions{display:flex; gap:10px;}
@@ -955,12 +961,12 @@ function renderPackingStatic(){
 function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
 
 const DEFAULT_NOTES_CONTENT = [
-  {jp:'カバンはチャック付き（できれば前掛けが安全）', en:'Use a bag with a zipper (wearing it on the front is safest if possible)'},
-  {jp:'財布は無くしても大丈夫な安物を使う', en:"Use a cheap wallet you wouldn't mind losing"},
-  {jp:'体調が悪い時や休みが必要な時は無理せずすぐ伝える', en:"If you're not feeling well or need a break, don't push through — let someone know right away"},
-  {jp:'帰りの飛行機は預け荷物が2つ預けれるので、お土産などを入れるかばん（折りたたみ可能なもの）を持ってきてもいいかも', en:'The return flight allows 2 checked bags, so it might be worth bringing a foldable bag for souvenirs'},
-  {jp:'トイレなど日本ほど綺麗じゃないので、念のために除菌シートやウェットティッシュを使えるようにカバンに入れるのはおすすめ', en:"Restrooms aren't as clean as in Japan, so it's a good idea to carry sanitizing wipes or wet tissues just in case"},
-  {jp:'モバイルバッテリーは絶対に手荷物のカバンに入れる。預け入れはできない', en:'Always keep portable batteries in your carry-on — they cannot go in checked luggage'},
+  {icon:'🎒', jp:'カバンはチャック付き（できれば前掛けが安全）', en:'Use a bag with a zipper (wearing it on the front is safest if possible)'},
+  {icon:'👛', jp:'財布は無くしても大丈夫な安物を使う', en:"Use a cheap wallet you wouldn't mind losing"},
+  {icon:'💛', jp:'体調が悪い時や休みが必要な時は無理せずすぐ伝える', en:"If you're not feeling well or need a break, don't push through — let someone know right away"},
+  {icon:'🧳', jp:'帰りの飛行機は預け荷物が2つ預けれるので、お土産などを入れるかばん（折りたたみ可能なもの）を持ってきてもいいかも', en:'The return flight allows 2 checked bags, so it might be worth bringing a foldable bag for souvenirs'},
+  {icon:'🚻', jp:'トイレなど日本ほど綺麗じゃないので、念のために除菌シートやウェットティッシュを使えるようにカバンに入れるのはおすすめ', en:"Restrooms aren't as clean as in Japan, so it's a good idea to carry sanitizing wipes or wet tissues just in case"},
+  {icon:'🔋', jp:'モバイルバッテリーをスーツケースの中に入れて預け入れることはできない', en:'Portable batteries cannot go in checked luggage inside your suitcase'},
 ];
 
 function renderNotesStatic(){
@@ -968,8 +974,13 @@ function renderNotesStatic(){
   if(!list) return;
   list.innerHTML = DEFAULT_NOTES_CONTENT.map(n=>`
     <div class="card rec-card">
-      <div class="note-jp">${escapeHtml(n.jp)}</div>
-      <div class="note-en">${escapeHtml(n.en)}</div>
+      <div class="note-card">
+        <div class="note-icon">${n.icon}</div>
+        <div class="note-body">
+          <div class="note-jp">${escapeHtml(n.jp)}</div>
+          <div class="note-en">${escapeHtml(n.en)}</div>
+        </div>
+      </div>
     </div>`).join('');
 }
 

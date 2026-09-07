@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>USA Family Trip 2026 / アメリカ家族旅行</title>
+<style>
+  :root{
+    --navy:#16324F;
+    --navy-light:#274863;
+    --coral:#FF6B4A;
+    --coral-dark:#E5502F;
+    --mustard:#FFB627;
+    --teal:#2A9D8F;
+    --teal-dark:#1F7A6E;
+    --paper:#FBF6EC;
+    --card:#FFFFFF;
+    --ink:#22303F;
+    --muted:#71808F;
+    --line:#E9E1D2;
+    --danger:#E63946;
+    --danger-bg:#FDEBEC;
+    --radius:20px;
+    --radius-sm:12px;
+    --shadow:0 6px 18px rgba(22,50,79,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;
+    line-height:1.55;
+    padding-bottom:40px;
+    -webkit-tap-highlight-color:transparent;
+  }
+  h1,h2,h3,.disp{
+    font-family:-apple-system, BlinkMacSystemFont, 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;
+    font-weight:700;
+    color:var(--navy);
+    margin:0;
+  }
+  a{color:inherit;}
+  button{font-family:inherit;}
+
+  /* ===== Header ===== */
+  .topbar{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);
+    color:#fff;
+    padding:18px 18px 14px;
+    position:relative;
+    overflow:hidden;
+  }
+  .topbar::after{
+    content:"";
+    position:absolute;
+    right:-40px; top:-40px;
+    width:160px;height:160px;
+    background:radial-gradient(circle, rgba(255,182,39,0.25) 0%, transparent 70%);
+  }
+  .topbar-row{
+    display:flex; align-items:center; justify-content:space-between;
+    position:relative; z-index:1;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand-badge{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--coral);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px; flex-shrink:0;
+    box-shadow:0 3px 8px rgba(255,107,74,0.4);
+  }
+  .brand-title{
+    font-family:-apple-system, BlinkMacSystemFont, 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;
+    font-size:15px; font-weight:700; color:#fff; line-height:1.3;
+  }
+  .brand-sub{font-size:11px;color:#C9D6E3;}
+  .update-pill{
+    font-size:10px; color:#C9D6E3; text-align:right; line-height:1.4;
+    cursor:pointer; padding:4px 8px; border-radius:10px;
+  }
+  .update-pill:hover{background:rgba(255,255,255,0.08);}
+  .update-pill b{color:#fff; display:block; font-size:11px;}
+
+  /* ===== Nav ===== */
+  .nav-wrap{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:10px 0;
+  }
+  .nav-scroll{
+    display:flex; gap:8px; overflow-x:auto;
+    padding:0 14px;
+    scrollbar-width:none;
+  }
+  .nav-scroll::-webkit-scrollbar{display:none;}
+  .nav-btn{
+    flex:0 0 auto;
+    display:flex; align-items:center; gap:6px;
+    background:#fff; border:1.5px solid var(--line);
+    color:var(--navy); font-weight:600; font-size:13px;
+    padding:9px 14px; border-radius:999px; cursor:pointer;
+    white-space:nowrap;
+    transition:all .15s ease;
+  }
+  .nav-btn:active{transform:scale(0.96);}
+  .nav-btn.active{
+    background:var(--coral); border-color:var(--coral); color:#fff;
+    box-shadow:0 4px 10px rgba(255,107,74,0.35);
+  }
+
+  /* ===== Layout ===== */
+  .page{ padding:18px 16px 60px; max-width:760px; margin:0 auto; display:none; }
+  .page.active{ display:block; animation:fadein .25s ease; }
+  @keyframes fadein{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .section-head{
+    display:flex; align-items:baseline; gap:8px; margin:26px 0 12px;
+  }
+  .section-head:first-child{margin-top:4px;}
+  .section-head h2{font-size:18px;}
+  .section-head .en{font-size:12px; color:var(--muted); font-weight:500;}
+
+  .card{
+    background:var(--card); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:18px; margin-bottom:14px;
+  }
+  .card-sm{border-radius:var(--radius-sm); padding:14px;}
+
+  .jp{font-weight:700; color:var(--navy);}
+  .en-line{color:var(--muted); font-size:13px;}
+  .bi{margin-bottom:2px;}
+  .bi .en-line{margin-top:1px;}
+
+  .tag{
+    display:inline-block; font-size:11px; font-weight:700;
+    padding:3px 10px; border-radius:999px; letter-spacing:.02em;
+  }
+  .tag.confirmed{background:#E4F5F1; color:var(--teal-dark);}
+  .tag.estimated{background:#FFF3DE; color:#946200;}
+  .tag.tbd{background:#F1F1F1; color:var(--muted);}
+
+  /* ===== Home hero ===== */
+  .hero-card{
+    background:linear-gradient(160deg, var(--coral) 0%, #FF8F63 100%);
+    color:#fff; border-radius:24px; padding:24px 20px;
+    text-align:center; box-shadow:0 10px 24px rgba(255,107,74,0.28);
+    margin-bottom:18px; position:relative; overflow:hidden;
+  }
+  .hero-card::before{
+    content:"✈️"; position:absolute; font-size:90px; opacity:0.12;
+    right:-10px; top:-16px; transform:rotate(18deg);
+  }
+  .hero-flag{font-size:30px;}
+  .hero-title{font-family:-apple-system, BlinkMacSystemFont, 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif; font-size:22px; font-weight:900; margin:6px 0 2px;}
+  .hero-title-en{font-size:13px; font-weight:600; opacity:.92; margin-bottom:14px;}
+  .hero-dates{font-size:15px; font-weight:700;}
+  .hero-dates-en{font-size:12px; opacity:.9; margin-bottom:10px;}
+  .hero-travelers{
+    display:inline-block; margin-top:10px; background:rgba(255,255,255,0.18);
+    padding:7px 14px; border-radius:12px; font-size:11.5px; font-weight:700;
+    white-space:nowrap; overflow-x:auto; max-width:100%; letter-spacing:.01em;
+  }
+
+  .next-up-item{
+    display:flex; gap:12px; align-items:flex-start;
+    padding:10px 0; border-bottom:1px dashed var(--line);
+  }
+  .next-up-item:last-child{border-bottom:none; padding-bottom:0;}
+  .next-up-icon{
+    width:36px;height:36px;border-radius:50%; background:var(--paper);
+    display:flex;align-items:center;justify-content:center; font-size:17px; flex-shrink:0;
+  }
+  .next-up-date{font-size:11px; color:var(--coral-dark); font-weight:700;}
+
+  .status-grid{display:grid; grid-template-columns:1fr; gap:12px;}
+  @media(min-width:520px){ .status-grid{grid-template-columns:1fr 1fr 1fr;} }
+  .status-card .icon{font-size:22px;}
+  .status-card h3{font-size:14px; margin:6px 0 2px;}
+  .status-card .en-line{margin-bottom:8px;}
+  .status-big{font-size:20px; font-weight:900; color:var(--navy); font-family:-apple-system, BlinkMacSystemFont, 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;}
+  .countdown-hero-card{
+    text-align:center; padding:28px 20px;
+    background:linear-gradient(160deg, #FFF6E9 0%, #FFEDD5 100%);
+    border:1.5px solid #FCE3B4;
+  }
+  .countdown-hero-card h3{font-size:15px; margin:8px 0 2px; color:var(--navy);}
+  .countdown-hero-card .en-line{margin-bottom:10px;}
+  .countdown-big{
+    font-size:40px; font-weight:900; color:var(--coral-dark);
+    font-family:-apple-system, BlinkMacSystemFont, 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif; line-height:1.2;
+  }
+
+  .progress-track{
+    background:#EFE9DB; border-radius:999px; height:10px; overflow:hidden; margin-top:6px;
+  }
+  .progress-fill{
+    height:100%; border-radius:999px;
+    background:linear-gradient(90deg,var(--teal),var(--mustard));
+    transition:width .3s ease;
+  }
+  .progress-pct{font-size:12px; color:var(--muted); margin-top:4px; text-align:right;}
+
+  .quicknav-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:10px;
+  }
+  @media(min-width:520px){ .quicknav-grid{grid-template-columns:repeat(3,1fr);} }
+  .quicknav-btn{
+    background:#fff; border:1.5px solid var(--line); border-radius:16px;
+    padding:14px 10px; text-align:center; cursor:pointer;
+    font-weight:700; color:var(--navy); font-size:12.5px;
+  }
+  .quicknav-btn .qi{font-size:22px; display:block; margin-bottom:6px;}
+  .quicknav-btn:active{transform:scale(0.96); background:var(--paper);}
+
+  /* ===== Timeline ===== */
+  .timeline{position:relative; padding-left:26px;}
+  .timeline::before{
+    content:""; position:absolute; left:9px; top:6px; bottom:6px; width:3px;
+    background:var(--line); border-radius:3px;
+  }
+  .tl-item{position:relative; margin-bottom:18px;}
+  .tl-dot{
+    position:absolute; left:-26px; top:2px; width:20px;height:20px;border-radius:50%;
+    background:var(--coral); border:3px solid var(--paper);
+    display:flex;align-items:center;justify-content:center; font-size:10px;
+  }
+  .tl-item.surprise .tl-dot{background:var(--mustard);}
+  .tl-date{font-size:12px; font-weight:800; color:var(--coral-dark); margin-bottom:4px;}
+  .tl-badge{
+    display:inline-block; background:var(--danger-bg); color:var(--danger);
+    font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:8px; margin-top:6px;
+  }
+  .tl-note{
+    background:#FFF8E8; border:1px dashed var(--mustard); border-radius:12px;
+    padding:8px 10px; font-size:12.5px; margin-top:8px; color:#7A5900;
+  }
+
+  /* ===== Flights ===== */
+  .flight-card{border-left:6px solid var(--coral);}
+  .flight-num-tag{
+    display:inline-block; background:var(--navy); color:#fff; font-size:11px; font-weight:700;
+    padding:3px 10px; border-radius:8px; margin-bottom:8px;
+  }
+  .route-row{
+    display:flex; align-items:center; gap:10px; margin:10px 0;
+  }
+  .route-pt{flex:1;}
+  .route-pt .code{font-size:20px; font-weight:900; color:var(--navy); font-family:-apple-system, BlinkMacSystemFont, 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;}
+  .route-arrow{color:var(--coral); font-size:20px;}
+  .date-badge{
+    display:inline-flex; align-items:center; gap:5px;
+    background:#FFF3DE; color:#946200; font-weight:800; font-size:12.5px;
+    padding:5px 12px; border-radius:999px; margin:6px 0 2px;
+  }
+  .time-badge{
+    display:inline-flex; align-items:center; gap:5px;
+    background:#F0F9F7; color:var(--teal-dark); font-weight:700; font-size:11.5px;
+    padding:4px 10px; border-radius:999px; margin-top:8px;
+  }
+  .time-row{display:flex; gap:16px; font-size:13px; color:var(--muted); margin-bottom:10px; flex-wrap:wrap;}
+  .baggage-box{
+    background:#F0F9F7; border-radius:12px; padding:10px 12px; margin-top:10px;
+    border:1px solid #D3EEE8;
+  }
+  .baggage-box.carryon{background:#FFF6EA; border-color:#FCE3B4;}
+  .baggage-box h4{margin:0 0 4px; font-size:13px; color:var(--teal-dark);}
+  .baggage-box.carryon h4{color:#946200;}
+
+  .summary-airline{margin-bottom:10px;}
+  .summary-airline .name{font-weight:800; color:var(--navy);}
+  .bag-count-badge{
+    display:inline-flex; align-items:center; gap:6px; font-weight:800;
+    background:var(--teal); color:#fff; padding:6px 12px; border-radius:999px; font-size:13px;
+  }
+  .bag-count-badge.one{background:var(--mustard); color:#5B4300;}
+
+  /* ===== Checklists ===== */
+  .checklist-item{
+    display:flex; align-items:flex-start; gap:12px; padding:11px 4px;
+    border-bottom:1px solid var(--line); cursor:pointer;
+  }
+  .checklist-item:last-child{border-bottom:none;}
+  .checkbox{
+    width:24px;height:24px; border-radius:8px; border:2px solid var(--line);
+    flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    font-size:14px; color:#fff; margin-top:1px; transition:all .15s;
+  }
+  .checklist-item.checked .checkbox{background:var(--teal); border-color:var(--teal);}
+  .checklist-item.checked .label-jp, .checklist-item.checked .label-en{
+    text-decoration:line-through; color:var(--muted);
+  }
+  .label-jp{font-weight:600;}
+  .label-en{font-size:12px; color:var(--muted);}
+
+  .category-title{
+    font-size:12.5px; font-weight:800; color:var(--coral-dark); text-transform:none;
+    margin:18px 0 8px; display:flex; align-items:center; gap:6px;
+  }
+  .category-title:first-child{margin-top:0;}
+
+  /* ===== Personal packing ===== */
+  .person-picker{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;}
+  .person-chip{
+    flex:1 1 auto; min-width:120px;
+    background:#fff; border:2px solid var(--line); border-radius:14px;
+    padding:10px; text-align:center; cursor:pointer; font-weight:700; color:var(--navy);
+  }
+  .person-chip.active{border-color:var(--coral); background:#FFF1ED; color:var(--coral-dark);}
+  .add-item-row{display:flex; gap:8px; margin-top:14px;}
+  .add-item-row input{
+    flex:1; border:1.5px solid var(--line); border-radius:12px; padding:10px 12px;
+    font-size:14px; font-family:inherit;
+  }
+  .del-x{color:var(--muted); font-size:16px; padding:0 4px; cursor:pointer; margin-left:auto;}
+
+  /* ===== Buttons ===== */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    border:none; border-radius:14px; padding:13px 18px; font-weight:800; font-size:14px;
+    cursor:pointer; width:100%;
+  }
+  .btn-primary{background:var(--coral); color:#fff; box-shadow:0 4px 12px rgba(255,107,74,0.35);}
+  .btn-primary:active{transform:scale(0.98);}
+  .btn-outline{background:#fff; border:1.5px solid var(--line); color:var(--navy);}
+
+  /* ===== Recommendation / Notes cards ===== */
+  .filter-row{display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; margin-bottom:14px;}
+  .filter-chip{
+    flex:0 0 auto; background:#fff; border:1.5px solid var(--line); border-radius:999px;
+    padding:7px 13px; font-size:12.5px; font-weight:700; color:var(--navy); cursor:pointer;
+  }
+  .filter-chip.active{background:var(--navy); border-color:var(--navy); color:#fff;}
+  .rec-card{position:relative;}
+  .rec-cat{font-size:11px; font-weight:800; color:var(--teal-dark); background:#E4F5F1; padding:3px 9px; border-radius:8px; display:inline-block; margin-bottom:8px;}
+  .rec-title{font-size:15.5px; font-weight:800; color:var(--navy); margin-bottom:4px;}
+  .rec-memo{font-size:13.5px; color:var(--ink); margin-bottom:8px; white-space:pre-wrap;}
+  .note-jp{font-size:14.5px; font-weight:700; color:var(--navy); line-height:1.6; margin-bottom:4px;}
+  .note-en{font-size:12px; color:var(--muted); line-height:1.5;}
+  .rec-loc{font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .rec-meta{font-size:11.5px; color:var(--muted); display:flex; justify-content:space-between; align-items:center; margin-top:8px; padding-top:8px; border-top:1px solid var(--line);}
+  .rec-actions{display:flex; gap:10px;}
+  .rec-actions span{cursor:pointer; font-weight:700;}
+  .empty-state{
+    text-align:center; color:var(--muted); padding:30px 10px; font-size:13.5px;
+  }
+
+  /* ===== Modal ===== */
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(22,50,79,0.45); z-index:100;
+    display:none; align-items:flex-end; justify-content:center;
+  }
+  .modal-backdrop.show{display:flex;}
+  .modal{
+    background:#fff; border-radius:24px 24px 0 0; padding:22px 18px 26px;
+    width:100%; max-width:520px; max-height:88vh; overflow-y:auto;
+    animation:slideup .22s ease;
+  }
+  @media(min-width:560px){
+    .modal-backdrop{align-items:center;}
+    .modal{border-radius:22px;}
+  }
+  @keyframes slideup{ from{transform:translateY(30px); opacity:0;} to{transform:translateY(0); opacity:1;} }
+  .modal h3{font-size:17px; margin-bottom:14px;}
+  .field{margin-bottom:12px;}
+  .field label{display:block; font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:5px;}
+  .field input, .field select, .field textarea{
+    width:100%; border:1.5px solid var(--line); border-radius:12px; padding:11px 12px;
+    font-size:14px; font-family:inherit; background:#FCFAF5;
+  }
+  .field textarea{min-height:70px; resize:vertical;}
+  .modal-actions{display:flex; gap:10px; margin-top:16px;}
+  .modal-actions .btn{flex:1;}
+
+  /* ===== Emergency ===== */
+  .emergency-card{border:1.5px solid #F5CACD; background:#FFFBFB;}
+  .emergency-card h3{color:var(--danger); font-size:14px; margin-bottom:6px;}
+  .contact-block{
+    background:#fff; border:1px solid var(--line); border-radius:12px;
+    padding:12px 14px; margin-top:10px;
+  }
+  .contact-block:first-of-type{margin-top:10px;}
+  .contact-name{font-weight:800; color:var(--navy); font-size:14px; margin-bottom:6px;}
+  .contact-line{font-size:13px; color:var(--ink); margin-top:3px;}
+  .emergency-tbd{color:var(--muted); font-style:normal; font-size:13px;}
+  .sos-banner{
+    background:var(--danger); color:#fff; border-radius:16px; padding:14px 16px;
+    text-align:center; font-weight:800; margin-bottom:16px; font-size:13.5px;
+  }
+  .sos-911{
+    font-size:15px; line-height:1.6; padding:18px 16px;
+    box-shadow:0 6px 16px rgba(230,57,70,0.35);
+  }
+
+  .cost-row{display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--line);}
+  .cost-row:last-child{border-bottom:none;}
+  .cost-row .amt{font-weight:800; color:var(--navy);}
+  .cost-total-card{
+    background:linear-gradient(135deg,var(--navy),var(--navy-light)); color:#fff;
+    text-align:center; padding:20px;
+  }
+  .cost-total-card .amt{font-size:30px; font-weight:900; color:var(--mustard); font-family:-apple-system, BlinkMacSystemFont, 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;}
+  .cost-total-card .en-line{color:#C9D6E3;}
+
+  .footer-note{text-align:center; color:var(--muted); font-size:11.5px; margin-top:30px;}
+
+  /* ===== Stay details (accommodation card) ===== */
+  .stay-loc{font-size:13px; color:var(--muted); margin-bottom:14px;}
+  .stay-fact-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;}
+  .stay-fact{background:var(--paper); border-radius:12px; padding:10px 12px; text-align:center;}
+  .stay-fact .fi{font-size:16px; margin-bottom:2px;}
+  .stay-fact .fjp{font-weight:700; color:var(--navy); font-size:13px;}
+  .stay-fact .fen{font-size:10.5px; color:var(--muted);}
+  .amenity-list{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px;}
+  .amenity-pill{
+    background:#F0F9F7; color:var(--teal-dark); font-size:11.5px; font-weight:700;
+    padding:6px 11px; border-radius:999px;
+  }
+  .checkinout-row{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:12.5px; padding:9px 0; border-top:1px solid var(--line);
+  }
+  .checkinout-row .lbl{color:var(--muted);}
+  .checkinout-row .val{font-weight:700; color:var(--navy);}
+  .stay-cost-box{
+    background:var(--paper); border-radius:14px; padding:14px; margin-top:12px; text-align:center;
+  }
+  .stay-cost-box .big{font-size:19px; font-weight:900; color:var(--navy); font-family:-apple-system, BlinkMacSystemFont, 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-row">
+    <div class="brand">
+      <div class="brand-badge">🌎</div>
+      <div>
+        <div class="brand-title">USA Family Trip<br>アメリカ家族旅行</div>
+      </div>
+    </div>
+    <div class="update-pill" id="lastUpdatedPill">最終更新 / Updated<br><b id="lastUpdatedText">—</b></div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-scroll" id="navScroll">
+    <button class="nav-btn" data-page="home">🏠 ホーム / HOME</button>
+    <button class="nav-btn" data-page="itinerary">📅 スケジュール / ITINERARY</button>
+    <button class="nav-btn" data-page="flights">✈️ フライト / FLIGHTS</button>
+    <button class="nav-btn" data-page="stays">🛏️ 宿泊 / STAYS</button>
+    <button class="nav-btn" data-page="cost">💰 費用 / COST</button>
+    <button class="nav-btn" data-page="packing">🧳 持ち物 / PACKING</button>
+    <button class="nav-btn" data-page="notes">📝 メモ / NOTES</button>
+  </div>
+</div>
+
+<!-- ============ HOME ============ -->
+<div class="page" id="page-home">
+  <div class="hero-card">
+    <div class="hero-flag">🇺🇸</div>
+    <div class="hero-title">USA FAMILY TRIP 2026</div>
+    <div class="hero-title-en">アメリカ家族旅行 2026</div>
+    <div class="hero-dates">2026年10月1日〜14日</div>
+    <div class="hero-dates-en">October 1–14, 2026</div>
+    <div class="hero-travelers">Mizuki・Graham・Mina・Kuniko・Sakina・Taisei</div>
+  </div>
+
+  <div class="card countdown-hero-card">
+    <div class="icon" style="font-size:32px;">🗓️</div>
+    <h3 class="jp" id="countdownLabel">出発まで</h3>
+    <div class="en-line" id="countdownLabelEn">Until departure</div>
+    <div class="countdown-big" id="countdownBig">-</div>
+  </div>
+
+  <div class="section-head"><h2>クイックナビ</h2><span class="en">QUICK NAV</span></div>
+  <div class="quicknav-grid">
+    <div class="quicknav-btn" data-page="itinerary"><span class="qi">📅</span>スケジュール<br>Itinerary</div>
+    <div class="quicknav-btn" data-page="flights"><span class="qi">✈️</span>フライト<br>Flights</div>
+    <div class="quicknav-btn" data-page="packing"><span class="qi">🧳</span>持ち物<br>Packing</div>
+    <div class="quicknav-btn" data-page="cost"><span class="qi">💰</span>費用<br>Cost</div>
+    <div class="quicknav-btn" data-page="notes"><span class="qi">📝</span>メモ<br>Notes</div>
+  </div>
+</div>
+
+<!-- ============ ITINERARY ============ -->
+<div class="page" id="page-itinerary">
+  <div class="section-head"><h2>スケジュール</h2><span class="en">ITINERARY</span></div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot">●</div>
+      <div class="tl-date">10/1</div>
+      <div class="card card-sm">
+        <div class="bi jp">日本 → ニューヨーク</div>
+        <div class="en-line">Japan → New York</div>
+        <div class="time-badge">🕐 KIX 13:10発 → JFK 22:05着（台北乗継）</div>
+        <div class="tl-note">✈️ フライト情報あり — フライトタブを参照 / Flight details — see the Flights tab</div>
+      </div>
+    </div>
+
+    <div class="tl-item surprise">
+      <div class="tl-dot">●</div>
+      <div class="tl-date">10/2</div>
+      <div class="card card-sm">
+        <div class="bi jp">ニューヨーク</div>
+        <div class="en-line">New York</div>
+        <div class="bi jp" style="margin-top:8px;">🗽 自由の女神</div>
+        <div class="en-line">Statue of Liberty</div>
+        <div class="time-badge">🕐 セキュリティチェックイン 10:30</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">●</div>
+      <div class="tl-date">10/3</div>
+      <div class="card card-sm">
+        <div class="bi jp">ニューヨーク → ジョージア州サバンナ市</div>
+        <div class="en-line">New York → Savannah, Georgia</div>
+        <div class="time-badge">🕐 JFK 18:55発 → SAV 21:44着（直行）</div>
+        <div class="tl-note">✈️ フライト情報あり — フライトタブを参照 / Flight details — see the Flights tab</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">●</div>
+      <div class="tl-date">10/3 〜 10/8</div>
+      <div class="card card-sm">
+        <div class="bi jp">ジョージア州サバンナ市</div>
+        <div class="en-line">Savannah, Georgia</div>
+        <div class="bi jp" style="margin-top:8px;">🏠 Grahamのお母さんの家に滞在</div>
+        <div class="en-line">Stay at Graham's mom's house</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">●</div>
+      <div class="tl-date">10/8</div>
+      <div class="card card-sm">
+        <div class="bi jp">サウスカロライナ州のGrahamのお父さんの家へ移動</div>
+        <div class="en-line">Move to Graham's dad's house in South Carolina</div>
+        <span class="tl-badge">⚠️ 変更の可能性 / Subject to change</span>
+        <div class="tl-note">Shawnの状況によっては、10/8より早く、または遅くサウスカロライナ州へ移動する可能性あり。<br>Depending on Shawn's condition, the family may move to South Carolina earlier or later than planned.</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">●</div>
+      <div class="tl-date">10/10</div>
+      <div class="card card-sm">
+        <div class="bi jp">🍽️ ノースカロライナ州でウェディングパーティー</div>
+        <div class="en-line">Wedding party in North Carolina</div>
+        <div class="en-line" style="margin-top:4px;">レストラン / ビュッフェ形式 — Restaurant / buffet style</div>
+        <div class="time-badge">🕐 18:00〜</div>
+        <div class="en-line" style="margin-top:8px;">📍 Parcel 191</div>
+        <a href="https://maps.app.goo.gl/f8hwXKqSQjdXVngd7" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px; color:var(--coral-dark); font-weight:700; font-size:12.5px; text-decoration:none; border-bottom:1.5px solid var(--coral-dark);">🗺️ Googleマップで開く / Open in Google Maps</a>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">●</div>
+      <div class="tl-date">10/12 〜 10/13</div>
+      <div class="card card-sm">
+        <div class="bi jp">サウスカロライナ州 → ワシントン・ダレス→ 帰国</div>
+        <div class="en-line">South Carolina → Washington Dulles → Japan</div>
+        <div class="time-badge">🕐 IAD 01:15発（10/13）→ 台北 05:10着（10/14）</div>
+        <div class="tl-note">
+          日本へ帰国：Mina / Kuniko / Sakina / Taisei
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">●</div>
+      <div class="tl-date">10/14</div>
+      <div class="card card-sm">
+        <div class="bi jp">🇯🇵 日本に到着</div>
+        <div class="en-line">Arrive in Japan</div>
+        <div class="time-badge">🕐 台北 08:20発 → 関西国際空港 12:10着</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ FLIGHTS ============ -->
+<div class="page" id="page-flights">
+  <div class="section-head"><h2>フライト</h2><span class="en">FLIGHTS</span></div>
+
+  <div class="card flight-card">
+    <div class="flight-num-tag">フライト1 / FLIGHT 1</div>
+    <div class="bi jp">エバー航空 BR131</div>
+    <div class="en-line">EVA Air BR131</div>
+    <div class="date-badge">📅 2026年10月1日 / October 1, 2026</div>
+    <div class="route-row">
+      <div class="route-pt"><div class="code">KIX</div><div class="en-line">関西国際空港<br>Kansai Intl Airport</div></div>
+      <div class="route-arrow">✈️</div>
+      <div class="route-pt" style="text-align:right;"><div class="code">TPE</div><div class="en-line">台北<br>Taipei</div></div>
+    </div>
+    <div class="time-row"><span>🕐 13:10 → 15:05</span><span>約2時間55分 / 2h 55m</span></div>
+    <div class="baggage-box">
+      <h4>🧳 預け荷物 / Checked Baggage</h4>
+      <div class="en-line">1人2個まで無料 — 2 checked bags included per person</div>
+      <div class="en-line">1個あたり23kgまで — Up to 23kg per bag</div>
+      <div class="en-line">3辺合計158cm以内 — Up to 158cm (linear dimensions, L+W+H)</div>
+    </div>
+    <div class="baggage-box carryon">
+      <h4>🎒 機内持ち込み / Carry-on</h4>
+      <div class="en-line">1個／人（7kg以内・56×36×23cm以内）＋身の回り品1個（リュック・ハンドバッグなど）</div>
+      <div class="en-line">1 bag/person (up to 7kg, 56×36×23cm) + 1 personal item (backpack, handbag, etc.)</div>
+    </div>
+  </div>
+
+  <div class="card flight-card">
+    <div class="flight-num-tag">フライト2 / FLIGHT 2</div>
+    <div class="bi jp">エバー航空 BR32</div>
+    <div class="en-line">EVA Air BR32</div>
+    <div class="date-badge">📅 2026年10月1日 / October 1, 2026</div>
+    <div class="route-row">
+      <div class="route-pt"><div class="code">TPE</div><div class="en-line">台北<br>Taipei</div></div>
+      <div class="route-arrow">✈️</div>
+      <div class="route-pt" style="text-align:right;"><div class="code">JFK</div><div class="en-line">ニューヨーク<br>New York</div></div>
+    </div>
+    <div class="time-row"><span>🕐 19:10 → 22:05</span><span>約12時間55分 / 12h 55m</span></div>
+    <div class="baggage-box">
+      <h4>🧳 預け荷物 / Checked Baggage</h4>
+      <div class="en-line">1人2個まで無料 — 2 checked bags included per person</div>
+      <div class="en-line">1個あたり23kgまで — Up to 23kg per bag</div>
+      <div class="en-line">3辺合計158cm以内 — Up to 158cm (linear dimensions, L+W+H)</div>
+    </div>
+    <div class="baggage-box carryon">
+      <h4>🎒 機内持ち込み / Carry-on</h4>
+      <div class="en-line">1個／人（7kg以内・56×36×23cm以内）＋身の回り品1個（リュック・ハンドバッグなど）</div>
+      <div class="en-line">1 bag/person (up to 7kg, 56×36×23cm) + 1 personal item (backpack, handbag, etc.)</div>
+    </div>
+  </div>
+
+  <div class="card flight-card" style="border-left-color:var(--danger);">
+    <div class="flight-num-tag" style="background:var(--danger);">フライト3 / FLIGHT 3</div>
+    <div class="bi jp">デルタ航空 DL5459</div>
+    <div class="en-line">Delta DL5459 (Delta Connection / Endeavor Air)</div>
+    <div class="date-badge">📅 2026年10月3日 / October 3, 2026</div>
+    <div class="route-row">
+      <div class="route-pt"><div class="code">JFK</div><div class="en-line">ニューヨーク ターミナル4<br>New York JFK Terminal 4</div></div>
+      <div class="route-arrow">✈️</div>
+      <div class="route-pt" style="text-align:right;"><div class="code">SAV</div><div class="en-line">サバンナ市<br>Savannah</div></div>
+    </div>
+    <div class="time-row"><span>🕐 18:55 → 21:44</span><span>直行便 / Nonstop</span><span>約2時間49分 / 2h 49m</span></div>
+    <div class="baggage-box" style="background:#FDF1EA; border-color:#F6DCC2;">
+      <h4 style="color:#A15A17;">🧳 預け荷物 / Checked Baggage</h4>
+      <div class="en-line">1人1個 — 1 checked bag per person</div>
+      <div class="en-line">約¥7,000／人 — Approx. ¥7,000/person</div>
+    </div>
+    <div class="baggage-box carryon">
+      <h4>🎒 機内持ち込み / Carry-on</h4>
+      <div class="en-line">機内持ち込み1個＋身の回り品1個は無料／人</div>
+      <div class="en-line">1 carry-on + 1 personal item free per person</div>
+    </div>
+  </div>
+
+  <div class="card flight-card">
+    <div class="flight-num-tag">フライト4 / FLIGHT 4</div>
+    <div class="bi jp">エバー航空 BR3</div>
+    <div class="en-line">EVA Air BR3</div>
+    <div class="date-badge">📅 2026年10月13日 / October 13, 2026</div>
+    <div class="route-row">
+      <div class="route-pt"><div class="code">IAD</div><div class="en-line">ワシントン・ダレス<br>Washington Dulles</div></div>
+      <div class="route-arrow">✈️</div>
+      <div class="route-pt" style="text-align:right;"><div class="code">TPE</div><div class="en-line">台北<br>Taipei</div></div>
+    </div>
+    <div class="time-row"><span>🕐 01:15 → 05:10 (+1日/+1 day)</span><span>約15時間55分 / 15h 55m</span></div>
+    <div class="baggage-box">
+      <h4>🧳 預け荷物 / Checked Baggage</h4>
+      <div class="en-line">1人2個まで無料 — 2 checked bags included per person</div>
+      <div class="en-line">1個あたり23kgまで — Up to 23kg per bag</div>
+      <div class="en-line">3辺合計158cm以内 — Up to 158cm (linear dimensions, L+W+H)</div>
+    </div>
+    <div class="baggage-box carryon">
+      <h4>🎒 機内持ち込み / Carry-on</h4>
+      <div class="en-line">1個／人（7kg以内・56×36×23cm以内）＋身の回り品1個（リュック・ハンドバッグなど）</div>
+      <div class="en-line">1 bag/person (up to 7kg, 56×36×23cm) + 1 personal item (backpack, handbag, etc.)</div>
+    </div>
+  </div>
+
+  <div class="card flight-card">
+    <div class="flight-num-tag">フライト5 / FLIGHT 5</div>
+    <div class="bi jp">エバー航空 BR132</div>
+    <div class="en-line">EVA Air BR132</div>
+    <div class="date-badge">📅 2026年10月14日 / October 14, 2026</div>
+    <div class="route-row">
+      <div class="route-pt"><div class="code">TPE</div><div class="en-line">台北<br>Taipei</div></div>
+      <div class="route-arrow">✈️</div>
+      <div class="route-pt" style="text-align:right;"><div class="code">KIX</div><div class="en-line">関西国際空港<br>Kansai Intl Airport</div></div>
+    </div>
+    <div class="time-row"><span>🕐 08:20 → 12:10</span><span>約2時間50分 / 2h 50m</span></div>
+    <div class="baggage-box">
+      <h4>🧳 預け荷物 / Checked Baggage</h4>
+      <div class="en-line">1人2個まで無料 — 2 checked bags included per person</div>
+      <div class="en-line">1個あたり23kgまで — Up to 23kg per bag</div>
+      <div class="en-line">3辺合計158cm以内 — Up to 158cm (linear dimensions, L+W+H)</div>
+    </div>
+    <div class="baggage-box carryon">
+      <h4>🎒 機内持ち込み / Carry-on</h4>
+      <div class="en-line">1個／人（7kg以内・56×36×23cm以内）＋身の回り品1個（リュック・ハンドバッグなど）</div>
+      <div class="en-line">1 bag/person (up to 7kg, 56×36×23cm) + 1 personal item (backpack, handbag, etc.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ STAYS ============ -->
+<div class="page" id="page-stays">
+  <div class="section-head"><h2>宿泊</h2><span class="en">ACCOMMODATION</span></div>
+
+  <div class="card">
+    <div class="bi jp" style="font-size:16px;">🗽 ニューヨーク / New York</div>
+    <div class="date-badge">📅 10月1日〜3日 ・ October 1–3</div>
+    <div class="stay-loc">📍 ニューヨーク・クイーンズ / Queens, New York</div>
+    <a href="https://www.airbnb.com/rooms/1550160996016890932?guests=1&adults=1&s=67&unique_share_id=5e72e15d-ed1c-48db-8654-8fc0129c1ddf" target="_blank" rel="noopener" style="display:inline-block; margin-bottom:14px; color:var(--coral-dark); font-weight:700; font-size:12.5px; text-decoration:none; border-bottom:1.5px solid var(--coral-dark);">🔗 Airbnbで見る / View on Airbnb</a>
+
+    <div class="stay-fact-grid">
+      <div class="stay-fact"><div class="fi">👨‍👩‍👧‍👦</div><div class="fjp">6人</div><div class="fen">6 people</div></div>
+      <div class="stay-fact"><div class="fi">🌙</div><div class="fjp">2泊</div><div class="fen">2 nights</div></div>
+      <div class="stay-fact"><div class="fi">🛏️</div><div class="fjp">3ベッドルーム</div><div class="fen">3 bedrooms</div></div>
+      <div class="stay-fact"><div class="fi">🛁</div><div class="fjp">2バスルーム</div><div class="fen">2 bathrooms</div></div>
+    </div>
+
+    <div class="amenity-list">
+      <span class="amenity-pill">🍳 キッチン / Kitchen</span>
+      <span class="amenity-pill">🧊 冷蔵庫 / Refrigerator</span>
+      <span class="amenity-pill">🔥 オーブン / Oven</span>
+      <span class="amenity-pill">📡 電子レンジ / Microwave</span>
+      <span class="amenity-pill">☕ コーヒー / Coffee maker</span>
+      <span class="amenity-pill">📶 Wi-Fi</span>
+      <span class="amenity-pill">🧺 洗濯機・乾燥機 / Washer & dryer</span>
+      <span class="amenity-pill">🚿 タオル / Towels</span>
+      <span class="amenity-pill">💇 ヘアドライヤー / Hair dryer</span>
+      <span class="amenity-pill">🧴 シャンプー / Shampoo</span>
+      <span class="amenity-pill">🧼 ボディソープ / Body soap</span>
+      <span class="amenity-pill">❄️ エアコン / A/C</span>
+      <span class="amenity-pill">🅿️ 無料駐車場 / Free parking</span>
+      <span class="amenity-pill">🔑 セルフチェックイン / Self check-in</span>
+    </div>
+
+    <div class="checkinout-row">
+      <span class="lbl">チェックイン / Check-in</span>
+      <span class="val">15:00〜 / After 3 PM</span>
+    </div>
+    <div class="checkinout-row">
+      <span class="lbl">チェックアウト / Check-out</span>
+      <span class="val">〜12:00 / Before 12 PM</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="bi jp" style="font-size:16px;">🌳 ジョージア州サバンナ市 / Savannah, Georgia</div>
+    <div class="date-badge">📅 10月3日〜8日 ・ October 3–8</div>
+    <div class="en-line">🏠 Grahamのお母さんの家に滞在 / Stay at Graham's mom's house</div>
+  </div>
+
+  <div class="card">
+    <div class="bi jp" style="font-size:16px;">🌴 サウスカロライナ州インメン市 / Inmen, South Carolina</div>
+    <div class="date-badge">📅 10月8日〜 / From October 8</div>
+    <div class="en-line">🏠 Grahamのお父さんの家に滞在 / Stay at Graham's dad's house</div>
+    <div class="tl-note" style="margin-top:10px;">
+      Shawnの状況によっては、10/8より早く、または遅くサウスカロライナ州へ移動する可能性あり。<br>
+      Depending on Shawn's condition, the family may move to South Carolina earlier or later than planned.
+    </div>
+  </div>
+</div>
+
+<!-- ============ COST ============ -->
+<div class="page" id="page-cost">
+  <div class="section-head"><h2>費用</h2><span class="en">COST</span></div>
+
+  <div class="card cost-total-card">
+    <div class="en-line">現在の合計 ・ CURRENT TOTAL</div>
+    <div class="amt">¥46,200</div>
+    <div class="en-line">／人 ・ per person</div>
+  </div>
+
+  <div class="card">
+    <div class="cost-row">
+      <div>
+        <div class="bi jp">ニューヨーク 宿泊（全員で¥127,791）</div>
+        <div class="label-en">New York accommodation (¥127,791 for everyone)</div>
+      </div>
+      <div class="amt">¥21,299</div>
+    </div>
+    <div class="cost-row">
+      <div>
+        <div class="bi jp">自由の女神</div>
+        <div class="label-en">Statue of Liberty</div>
+      </div>
+      <div class="amt">¥4,100</div>
+    </div>
+    <div class="cost-row">
+      <div>
+        <div class="bi jp">デルタ 預け荷物</div>
+        <div class="label-en">Delta checked baggage</div>
+      </div>
+      <div class="amt">¥7,000</div>
+    </div>
+    <div class="cost-row">
+      <div>
+        <div class="bi jp">eSIM（データ無制限）</div>
+        <div class="label-en">eSIM (unlimited data)</div>
+      </div>
+      <div class="amt">¥7,500</div>
+    </div>
+    <div class="cost-row">
+      <div>
+        <div class="bi jp">ESTA</div>
+        <div class="label-en">ESTA</div>
+      </div>
+      <div class="amt">¥6,300</div>
+    </div>
+  </div>
+  <div class="tl-note">※為替レート次第で金額が上下します。<br>Amount may vary slightly with the exchange rate.</div>
+
+  <div class="section-head"><h2>未定の費用</h2><span class="en">NOT YET INCLUDED (TBD)</span></div>
+  <div class="card">
+    <div class="cost-row"><div class="bi jp">食費 / Food</div><span class="tag tbd">TBD / 未定</span></div>
+    <div class="cost-row"><div class="bi jp">タクシー / Taxi</div><span class="tag tbd">TBD / 未定</span></div>
+    <div class="cost-row"><div class="bi jp">チップ / Tips</div><span class="tag tbd">TBD / 未定</span></div>
+    <div class="cost-row"><div class="bi jp">お土産 / Souvenirs</div><span class="tag tbd">TBD / 未定</span></div>
+    <div class="cost-row"><div class="bi jp">その他 / Other activities</div><span class="tag tbd">TBD / 未定</span></div>
+  </div>
+</div>
+
+
+<!-- ============ PACKING ============ -->
+<div class="page" id="page-packing">
+  <div class="section-head"><h2>持ち物リスト</h2><span class="en">PACKING LIST</span></div>
+  <div class="card" id="packingStaticList"></div>
+</div>
+
+
+<!-- ============ FAMILY NOTES ============ -->
+<div class="page" id="page-notes">
+  <div class="section-head"><h2>メモ</h2><span class="en">NOTES</span></div>
+  <div id="noteList"></div>
+</div>
+
+<div class="footer-note">USA Family Trip 2026 🌎</div>
+
+<script>
+/* ============ Navigation ============ */
+const pages = document.querySelectorAll('.page');
+const navBtns = document.querySelectorAll('.nav-btn');
+function goPage(id){
+  pages.forEach(p=>p.classList.toggle('active', p.id === 'page-'+id));
+  navBtns.forEach(b=>b.classList.toggle('active', b.dataset.page === id));
+  window.scrollTo({top:0, behavior:'instant'});
+}
+navBtns.forEach(b=> b.addEventListener('click', ()=> goPage(b.dataset.page)));
+document.querySelectorAll('.quicknav-btn').forEach(b=> b.addEventListener('click', ()=> goPage(b.dataset.page)));
+goPage('home');
+
+/* ============ Countdown to departure ============ */
+function renderCountdown(){
+  const labelEl = document.getElementById('countdownLabel');
+  const labelEnEl = document.getElementById('countdownLabelEn');
+  const bigEl = document.getElementById('countdownBig');
+  if(!bigEl) return;
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const departure = new Date(2026, 9, 1);   // Oct 1, 2026
+  const returnDay = new Date(2026, 9, 14);  // Oct 14, 2026
+  const oneDay = 24*60*60*1000;
+  const daysToDeparture = Math.round((departure - today) / oneDay);
+
+  if(daysToDeparture > 0){
+    labelEl.textContent = '出発まで';
+    labelEnEl.textContent = 'Until departure';
+    bigEl.textContent = `あと${daysToDeparture}日`;
+  }else if(today >= departure && today <= returnDay){
+    const daysToReturn = Math.round((returnDay - today) / oneDay);
+    labelEl.textContent = '帰国まで';
+    labelEnEl.textContent = "Until you're home";
+    bigEl.textContent = daysToReturn > 0 ? `あと${daysToReturn}日` : '本日帰国';
+  }else{
+    labelEl.textContent = '旅行終了';
+    labelEnEl.textContent = 'Trip complete';
+    bigEl.textContent = '🎉';
+  }
+}
+renderCountdown();
+
+
+function updateProgressUI(barIds, pctIds, checkedCount, total){
+  const pct = total ? Math.round((checkedCount/total)*100) : 0;
+  barIds.forEach(id=>{ const el=document.getElementById(id); if(el) el.style.width = pct+'%'; });
+  pctIds.forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent = pct+'%'; });
+  return pct;
+}
+
+/* ============ Packing categories (static reference list) ============ */
+const PACKING_CATEGORIES = [
+  {title:'マスト', titleEn:'Must-Have', items:[
+    {jp:'パスポート', en:'Passport'},
+    {jp:'ESTA（アプリ）', en:'ESTA (app)'},
+    {jp:'クレジットカード', en:'Credit card'},
+    {jp:'キャッシュカード', en:'Debit / cash card'},
+    {jp:'国際運転免許証', en:'International Driving Permit'},
+    {jp:'スマートフォン', en:'Smartphone'},
+    {jp:'充電器コード', en:'Charger cable'},
+    {jp:'モバイルバッテリー', en:'Portable battery'},
+    {jp:'着替え（5日分ほどでOK 洗濯できる）', en:'Change of clothes (about 5 days is fine — laundry available)'},
+    {jp:'羽織りもの', en:'Light jacket'},
+    {jp:'室内用サンダル', en:'Indoor sandals'},
+    {jp:'外用歩きやすい靴', en:'Comfortable outdoor shoes'},
+    {jp:'ウェディングパーティー用の服', en:'Wedding party outfit'},
+    {jp:'パジャマ', en:'Pajamas'},
+    {jp:'下着・靴下', en:'Underwear & socks'},
+    {jp:'歯ブラシ・歯磨き粉', en:'Toothbrush & toothpaste'},
+    {jp:'常備薬', en:'Regular medication'},
+  ]},
+  {title:'飛行機用（オススメ）', titleEn:'For the Flight (Recommended)', items:[
+    {jp:'ネックピロー', en:'Neck pillow'},
+    {jp:'アイマスク', en:'Eye mask'},
+    {jp:'着圧ソックス', en:'Compression socks'},
+    {jp:'マスク', en:'Mask'},
+    {jp:'ビニール袋', en:'Plastic bags'},
+    {jp:'水筒', en:'Water bottle'},
+    {jp:'上着', en:'Outerwear'},
+    {jp:'ガムやキャンディー ちょっとしたお菓子', en:'Gum, candy, small snacks'},
+  ]},
+  {title:'あると便利', titleEn:'Useful to Have', items:[
+    {jp:'エコバッグ', en:'Eco bag'},
+    {jp:'ウェットティッシュ', en:'Wet wipes'},
+    {jp:'ティッシュ', en:'Tissues'},
+    {jp:'ハンカチやタオル1〜2枚', en:'Handkerchief / small towel (1-2)'},
+    {jp:'折りたたみ傘', en:'Foldable umbrella'},
+    {jp:'スマホストラップ', en:'Phone strap'},
+    {jp:'海外用変換プラグ', en:'Travel adapter'},
+    {jp:'日本食恋しくなった用のちょっとしたお菓子', en:'Japanese snacks for when you miss home'},
+  ]},
+];
+
+function renderPackingStatic(){
+  const box = document.getElementById('packingStaticList');
+  if(!box) return;
+  box.innerHTML = PACKING_CATEGORIES.map(cat=>{
+    const itemsHtml = cat.items.map(it=>`
+      <div class="checklist-item" style="cursor:default;">
+        <div><div class="label-jp">${it.jp}</div><div class="label-en">${it.en}</div></div>
+      </div>`).join('');
+    return `<div class="category-title">${cat.title} <span style="color:var(--muted); font-weight:600;">/ ${cat.titleEn}</span></div>${itemsHtml}`;
+  }).join('');
+}
+
+/* ============ Family Notes (static, read-only) ============ */
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+const DEFAULT_NOTES_CONTENT = [
+  {jp:'カバンはチャック付き（できれば前掛けが安全）', en:'Use a bag with a zipper (wearing it on the front is safest if possible)'},
+  {jp:'財布は無くしても大丈夫な安物を使う', en:"Use a cheap wallet you wouldn't mind losing"},
+  {jp:'体調が悪い時や休みが必要な時は無理せずすぐ伝える', en:"If you're not feeling well or need a break, don't push through — let someone know right away"},
+  {jp:'帰りの飛行機は預け荷物が2つ預けれるので、お土産などを入れるかばん（折りたたみ可能なもの）を持ってきてもいいかも', en:'The return flight allows 2 checked bags, so it might be worth bringing a foldable bag for souvenirs'},
+  {jp:'トイレなど日本ほど綺麗じゃないので、念のために除菌シートやウェットティッシュを使えるようにカバンに入れるのはおすすめ', en:"Restrooms aren't as clean as in Japan, so it's a good idea to carry sanitizing wipes or wet tissues just in case"},
+  {jp:'モバイルバッテリーは絶対に手荷物のカバンに入れる。預け入れはできない', en:'Always keep portable batteries in your carry-on — they cannot go in checked luggage'},
+];
+
+function renderNotesStatic(){
+  const list = document.getElementById('noteList');
+  if(!list) return;
+  list.innerHTML = DEFAULT_NOTES_CONTENT.map(n=>`
+    <div class="card rec-card">
+      <div class="note-jp">${escapeHtml(n.jp)}</div>
+      <div class="note-en">${escapeHtml(n.en)}</div>
+    </div>`).join('');
+}
+
+/* ============ Init ============ */
+function init(){
+  renderPackingStatic();
+  renderNotesStatic();
+  document.getElementById('lastUpdatedText').textContent = '2026/09/07';
+}
+init();
+</script>
+</body>
+</html>

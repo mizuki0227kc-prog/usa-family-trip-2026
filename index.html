@@ -256,6 +256,11 @@
     background:#FFF3DE; color:#946200; font-weight:800; font-size:12.5px;
     padding:5px 12px; border-radius:999px; margin:6px 0 2px;
   }
+  .date-label{
+    font-size:12.5px; font-weight:800; color:var(--coral-dark);
+    margin:18px 2px 6px; display:flex; align-items:center; gap:4px;
+  }
+  .date-label:first-of-type{margin-top:4px;}
   .time-badge{
     display:inline-flex; align-items:center; gap:5px;
     background:#F0F9F7; color:var(--teal-dark); font-weight:700; font-size:11.5px;
@@ -400,6 +405,15 @@
     font-size:15px; line-height:1.6; padding:18px 16px;
     box-shadow:0 6px 16px rgba(230,57,70,0.35);
   }
+  .emergency-item{
+    display:flex; align-items:flex-start; gap:12px;
+    padding:11px 4px; border-bottom:1px solid var(--line);
+  }
+  .emergency-item:last-child{border-bottom:none;}
+  .emergency-item-icon{
+    width:34px; height:34px; border-radius:50%; background:var(--paper);
+    display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0;
+  }
 
   .cost-row{display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--line);}
   .cost-row:last-child{border-bottom:none;}
@@ -460,6 +474,7 @@
     <button class="nav-btn" data-page="cost">💰 費用 / COST</button>
     <button class="nav-btn" data-page="packing">🧳 持ち物 / PACKING</button>
     <button class="nav-btn" data-page="notes">📝 メモ / NOTES</button>
+    <button class="nav-btn" data-page="emergency">🚨 緊急連絡先 / EMERGENCY</button>
   </div>
 </div>
 
@@ -469,8 +484,8 @@
     <div class="hero-flag">🇺🇸</div>
     <div class="hero-title">USA FAMILY TRIP 2026</div>
     <div class="hero-title-en">アメリカ家族旅行 2026</div>
-    <div class="hero-dates">2026年10月1日〜14日</div>
-    <div class="hero-dates-en">October 1–14, 2026</div>
+    <div class="hero-dates">10/1〜14</div>
+    <div class="hero-dates-en">10/1–14</div>
     <div class="hero-travelers">Mizuki・Graham・Mina・Kuniko・Sakina・Taisei</div>
   </div>
 
@@ -488,6 +503,7 @@
     <div class="quicknav-btn" data-page="packing"><span class="qi">🧳</span>持ち物<br>Packing</div>
     <div class="quicknav-btn" data-page="cost"><span class="qi">💰</span>費用<br>Cost</div>
     <div class="quicknav-btn" data-page="notes"><span class="qi">📝</span>メモ<br>Notes</div>
+    <div class="quicknav-btn" data-page="emergency"><span class="qi">🚨</span>緊急連絡先<br>Emergency</div>
   </div>
 </div>
 
@@ -515,7 +531,9 @@
         <div class="en-line">New York</div>
         <div class="bi jp" style="margin-top:8px;">🗽 自由の女神</div>
         <div class="en-line">Statue of Liberty</div>
-        <div class="time-badge">🕐 セキュリティチェックイン 10:30</div>
+        <div class="time-badge">🕐 セキュリティチェックイン 10:30 / Security check-in 10:30 AM</div>
+        <div class="en-line" style="margin-top:8px;">📍 Castle Clinton, Battery Park</div>
+        <a href="https://maps.app.goo.gl/ahy3hYf3YtR3UP6u8" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px; color:var(--coral-dark); font-weight:700; font-size:12.5px; text-decoration:none; border-bottom:1.5px solid var(--coral-dark);">🗺️ Googleマップで開く / Open in Google Maps</a>
       </div>
     </div>
 
@@ -545,7 +563,7 @@
       <div class="tl-dot">●</div>
       <div class="tl-date">10/8</div>
       <div class="card card-sm">
-        <div class="bi jp">サウスカロライナ州のGrahamのお父さんの家へ移動</div>
+        <div class="bi jp">サウスカロライナ州インマン市のGrahamのお父さんの家へ移動</div>
         <div class="en-line">Move to Graham's dad's house in South Carolina</div>
         <span class="tl-badge">⚠️ 変更の可能性 / Subject to change</span>
         <div class="tl-note">Shawnの状況によっては、10/8より早く、または遅くサウスカロライナ州へ移動する可能性あり。<br>Depending on Shawn's condition, the family may move to South Carolina earlier or later than planned.</div>
@@ -595,12 +613,12 @@
 <div class="page" id="page-flights">
   <div class="section-head"><h2>フライト</h2><span class="en">FLIGHTS</span></div>
 
+  <div class="date-label">📅 10/1</div>
   <div class="card flight-card">
     <div class="flight-num-tag">フライト1 / FLIGHT 1</div>
     <div class="bi jp">エバー航空 BR131</div>
     <div class="en-line">EVA Air BR131</div>
-    <div class="date-badge">📅 2026年10月1日 / October 1, 2026</div>
-    <div class="route-row">
+        <div class="route-row">
       <div class="route-pt"><div class="code">KIX</div><div class="en-line">関西国際空港<br>Kansai Intl Airport</div></div>
       <div class="route-arrow">✈️</div>
       <div class="route-pt" style="text-align:right;"><div class="code">TPE</div><div class="en-line">台北<br>Taipei</div></div>
@@ -619,12 +637,12 @@
     </div>
   </div>
 
+  <div class="date-label">📅 10/1</div>
   <div class="card flight-card">
     <div class="flight-num-tag">フライト2 / FLIGHT 2</div>
     <div class="bi jp">エバー航空 BR32</div>
     <div class="en-line">EVA Air BR32</div>
-    <div class="date-badge">📅 2026年10月1日 / October 1, 2026</div>
-    <div class="route-row">
+        <div class="route-row">
       <div class="route-pt"><div class="code">TPE</div><div class="en-line">台北<br>Taipei</div></div>
       <div class="route-arrow">✈️</div>
       <div class="route-pt" style="text-align:right;"><div class="code">JFK</div><div class="en-line">ニューヨーク<br>New York</div></div>
@@ -643,12 +661,12 @@
     </div>
   </div>
 
+  <div class="date-label">📅 10/3</div>
   <div class="card flight-card" style="border-left-color:var(--danger);">
     <div class="flight-num-tag" style="background:var(--danger);">フライト3 / FLIGHT 3</div>
     <div class="bi jp">デルタ航空 DL5459</div>
     <div class="en-line">Delta DL5459 (Delta Connection / Endeavor Air)</div>
-    <div class="date-badge">📅 2026年10月3日 / October 3, 2026</div>
-    <div class="route-row">
+        <div class="route-row">
       <div class="route-pt"><div class="code">JFK</div><div class="en-line">ニューヨーク ターミナル4<br>New York JFK Terminal 4</div></div>
       <div class="route-arrow">✈️</div>
       <div class="route-pt" style="text-align:right;"><div class="code">SAV</div><div class="en-line">サバンナ市<br>Savannah</div></div>
@@ -666,12 +684,12 @@
     </div>
   </div>
 
+  <div class="date-label">📅 10/13</div>
   <div class="card flight-card">
     <div class="flight-num-tag">フライト4 / FLIGHT 4</div>
     <div class="bi jp">エバー航空 BR3</div>
     <div class="en-line">EVA Air BR3</div>
-    <div class="date-badge">📅 2026年10月13日 / October 13, 2026</div>
-    <div class="route-row">
+        <div class="route-row">
       <div class="route-pt"><div class="code">IAD</div><div class="en-line">ワシントン・ダレス<br>Washington Dulles</div></div>
       <div class="route-arrow">✈️</div>
       <div class="route-pt" style="text-align:right;"><div class="code">TPE</div><div class="en-line">台北<br>Taipei</div></div>
@@ -690,12 +708,12 @@
     </div>
   </div>
 
+  <div class="date-label">📅 10/14</div>
   <div class="card flight-card">
     <div class="flight-num-tag">フライト5 / FLIGHT 5</div>
     <div class="bi jp">エバー航空 BR132</div>
     <div class="en-line">EVA Air BR132</div>
-    <div class="date-badge">📅 2026年10月14日 / October 14, 2026</div>
-    <div class="route-row">
+        <div class="route-row">
       <div class="route-pt"><div class="code">TPE</div><div class="en-line">台北<br>Taipei</div></div>
       <div class="route-arrow">✈️</div>
       <div class="route-pt" style="text-align:right;"><div class="code">KIX</div><div class="en-line">関西国際空港<br>Kansai Intl Airport</div></div>
@@ -719,11 +737,10 @@
 <div class="page" id="page-stays">
   <div class="section-head"><h2>宿泊</h2><span class="en">ACCOMMODATION</span></div>
 
+  <div class="date-label">📅 10/1〜3</div>
   <div class="card">
     <div class="bi jp" style="font-size:16px;">🗽 ニューヨーク / New York</div>
-    <div class="date-badge">📅 10月1日〜3日 ・ October 1–3</div>
-    <div class="stay-loc">📍 ニューヨーク・クイーンズ / Queens, New York</div>
-    <a href="https://www.airbnb.com/rooms/1550160996016890932?guests=1&adults=1&s=67&unique_share_id=5e72e15d-ed1c-48db-8654-8fc0129c1ddf" target="_blank" rel="noopener" style="display:inline-block; margin-bottom:14px; color:var(--coral-dark); font-weight:700; font-size:12.5px; text-decoration:none; border-bottom:1.5px solid var(--coral-dark);">🔗 Airbnbで見る / View on Airbnb</a>
+        <div class="stay-loc">📍 ニューヨーク・クイーンズ / Queens, New York</div>
 
     <div class="stay-fact-grid">
       <div class="stay-fact"><div class="fi">👨‍👩‍👧‍👦</div><div class="fjp">6人</div><div class="fen">6 people</div></div>
@@ -759,16 +776,16 @@
     </div>
   </div>
 
+  <div class="date-label">📅 10/3〜8</div>
   <div class="card">
     <div class="bi jp" style="font-size:16px;">🌳 ジョージア州サバンナ市 / Savannah, Georgia</div>
-    <div class="date-badge">📅 10月3日〜8日 ・ October 3–8</div>
-    <div class="en-line">🏠 Grahamのお母さんの家に滞在 / Stay at Graham's mom's house</div>
+        <div class="en-line">🏠 Grahamのお母さんの家に滞在 / Stay at Graham's mom's house</div>
   </div>
 
+  <div class="date-label">📅 10/8〜</div>
   <div class="card">
-    <div class="bi jp" style="font-size:16px;">🌴 サウスカロライナ州インメン市 / Inmen, South Carolina</div>
-    <div class="date-badge">📅 10月8日〜 / From October 8</div>
-    <div class="en-line">🏠 Grahamのお父さんの家に滞在 / Stay at Graham's dad's house</div>
+    <div class="bi jp" style="font-size:16px;">🌴 サウスカロライナ州インマン市 / Inman, South Carolina</div>
+        <div class="en-line">🏠 Grahamのお父さんの家に滞在 / Stay at Graham's dad's house</div>
     <div class="tl-note" style="margin-top:10px;">
       Shawnの状況によっては、10/8より早く、または遅くサウスカロライナ州へ移動する可能性あり。<br>
       Depending on Shawn's condition, the family may move to South Carolina earlier or later than planned.
@@ -840,6 +857,7 @@
 <div class="page" id="page-packing">
   <div class="section-head"><h2>持ち物リスト</h2><span class="en">PACKING LIST</span></div>
   <div class="card" id="packingStaticList"></div>
+  <div class="tl-note">⚠️ 電化製品・グラスなど壊れやすいものはスーツケースに入れない<br>Do not put electronics, glasses, or other fragile items in checked luggage.</div>
 </div>
 
 
@@ -850,6 +868,34 @@
 </div>
 
 <div class="footer-note">USA Family Trip 2026 🌎</div>
+
+<!-- ============ EMERGENCY ============ -->
+<div class="page" id="page-emergency">
+  <div class="section-head"><h2>緊急連絡先</h2><span class="en">EMERGENCY</span></div>
+  <div class="sos-banner sos-911">🚨 IF YOU ARE IN IMMEDIATE DANGER → CALL 911<br>今すぐ危険な場合 → 911</div>
+
+  <div class="card emergency-card">
+    <h3>📞 緊急連絡先 / Emergency Contacts</h3>
+    <div class="contact-block">
+      <div class="contact-name">MELISSA SEARSON (グラムママ)</div>
+      <div class="contact-line">📍 109 Hunter Lane, Savannah, Georgia</div>
+      <div class="contact-line">📞 336-362-0296</div>
+    </div>
+    <div class="contact-block">
+      <div class="contact-name">GRAHAM WHITE HAWKINS (グラム)</div>
+      <div class="contact-line">📍 109 Hunter Lane, Savannah, Georgia</div>
+      <div class="contact-line">📞 336-509-6966</div>
+      <div class="contact-line">✉️ ghdubya@gmail.com</div>
+    </div>
+    <div class="contact-block">
+      <div class="contact-name">MIZUKI GONNO (ミズキ)</div>
+      <div class="contact-line">📞 +81 80-8532-3837</div>
+      <div class="contact-line">✉️ mizuki0227.kc@gmail.com</div>
+    </div>
+  </div>
+
+  <div class="tl-note">慌てず、安全な場所に移動して家族に連絡してください。<br>Don't panic. Get somewhere safe and contact the family.</div>
+</div>
 
 <script>
 /* ============ Navigation ============ */
@@ -904,6 +950,12 @@ function updateProgressUI(barIds, pctIds, checkedCount, total){
 
 /* ============ Packing categories (static reference list) ============ */
 const PACKING_CATEGORIES = [
+  {title:'出発前準備', titleEn:'Before Departure', items:[
+    {jp:'海外旅行保険', en:'Travel insurance'},
+    {jp:'eSIM・海外用SIMカード購入＆設定', en:'Purchase & set up eSIM or international SIM card'},
+    {jp:'Apple Payなどを登録し、携帯でクレジットカード決済ができる状態にする', en:'Set up Apple Pay and other mobile payment options so credit cards can be used on the phone'},
+    {jp:'ドル両替（全員で$150ほど）・追加は現地ATMで引き出し', en:'Exchange about $150 USD total for the whole family; withdraw more from ATMs locally if needed'},
+  ]},
   {title:'マスト', titleEn:'Must-Have', items:[
     {jp:'パスポート', en:'Passport'},
     {jp:'ESTA（アプリ）', en:'ESTA (app)'},
@@ -948,12 +1000,21 @@ const PACKING_CATEGORIES = [
 function renderPackingStatic(){
   const box = document.getElementById('packingStaticList');
   if(!box) return;
+  const liquidsNoticeHtml = `
+    <div class="tl-note" style="margin:10px 0 4px;">
+      🧴 手荷物の液体ルール / Carry-on Liquids<br>
+      ・1つの容器につき100ml以下 / Each container must be 100ml or less<br>
+      ・透明ジッパー袋1人1個・合計1L以下 / 1 clear, resealable bag per person, up to 1L total<br>
+      ・保安検査では液体の袋を取り出して提示 / Take the liquids bag out at security screening<br>
+      ・大きなボトルは預け荷物へ / Put large bottles in checked luggage
+    </div>`;
   box.innerHTML = PACKING_CATEGORIES.map(cat=>{
     const itemsHtml = cat.items.map(it=>`
       <div class="checklist-item" style="cursor:default;">
         <div><div class="label-jp">${it.jp}</div><div class="label-en">${it.en}</div></div>
       </div>`).join('');
-    return `<div class="category-title">${cat.title} <span style="color:var(--muted); font-weight:600;">/ ${cat.titleEn}</span></div>${itemsHtml}`;
+    const extra = (cat.title === '飛行機用（オススメ）') ? liquidsNoticeHtml : '';
+    return `<div class="category-title">${cat.title} <span style="color:var(--muted); font-weight:600;">/ ${cat.titleEn}</span></div>${itemsHtml}${extra}`;
   }).join('');
 }
 
